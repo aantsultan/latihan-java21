@@ -1,0 +1,78 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${springDependencyManagement}"
+    id 'org.graalvm.buildtools.native' version "${graalvmBuildtoolsVersion}"
+}
+
+group = 'com.latihan.java21'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(javaVersion)
+    }
+}
+
+allprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        implementation 'org.springframework.boot:spring-boot-starter'
+        testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    }
+    test {
+        useJUnitPlatform()
+    }
+}
+
+project('latihan-java21-spring-restful-api') {
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'org.graalvm.buildtools.native'
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-starter-web:${springWebVersion}"
+        implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springDataJpaVersion}"
+        implementation "org.springframework.boot:spring-boot-starter-validation:${springBootValidationVersion}"
+        implementation "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+        implementation "io.jsonwebtoken:jjwt-api:${jjwtApiVersion}"
+        implementation "io.jsonwebtoken:jjwt-impl:${jjwtImplVersion}"
+        implementation "io.jsonwebtoken:jjwt-jackson:${jjwtJackson}"
+        implementation "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
+        implementation "org.springframework.session:spring-session-data-redis:${springSessionDataRedisVersion}"
+
+        runtimeOnly "org.mariadb.jdbc:mariadb-java-client:${mariaDbClientVersion}"
+        developmentOnly "org.springframework.boot:spring-boot-devtools:${springBootVersion}"
+
+        implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
+    }
+}
+
+project('latihan-java21-spring-ai') {
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'org.graalvm.buildtools.native'
+    dependencies {
+        implementation "org.springframework.boot:spring-boot-starter-web:${springWebVersion}"
+        implementation "org.deeplearning4j:deeplearning4j-core:1.0.0-M2" // Native Deep Learning
+        implementation "nz.ac.waikato.cms.weka:weka-stable:3.8.6" // Machine Learning
+    }
+}
+
+graalvmNative {
+    toolchainDetection = true
+}
+
+graalvmNative {
+    binaries {
+        main {
+            javaLauncher = javaToolchains.launcherFor {
+                languageVersion = JavaLanguageVersion.of(21)
+                vendor = JvmVendorSpec.matching("Oracle Corporation")
+            }
+        }
+    }
+}

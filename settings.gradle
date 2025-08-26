@@ -1,0 +1,4 @@
+rootProject.name = 'latihan-java21'
+
+include 'latihan-java21-spring-restful-api'
+include 'latihan-java21-spring-ai'

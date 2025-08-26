@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mariadb://localhost:3306/latihan_java21
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 20
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      client-type: lettuce
+      connect-timeout: 10s
+      database: 0
+  cache:
+    type: redis
+    redis:
+      use-key-prefix: true
+      key-prefix: 'cache:'
+      enable-statistics: true
+      cache-null-values: true
+      time-to-live: 30m
+
+jwt:
+  token:
+    secret: DKriVLmNCUrvxKTvWY9S3CH+XWyjoh5pjxIexJCooo7rl5RnEZpK1gKWnrPPKNfeDKriVLmNCUrvxKTvWY9S3CH+XWyjoh5pjxIexJCooo7rl5RnEZpK1gKWnrPPKNfe
+    expire: 30m
+springdoc:
+  packages-to-scan: id.latihan.java21.restfulapi.controller
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+  enable-spring-security: true

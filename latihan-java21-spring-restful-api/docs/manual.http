@@ -1,0 +1,27 @@
+### REGISTER
+POST http://localhost:8080/api/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username" : "aant_2",
+  "email" : "aant_2@mail.com",
+  "firstName": "A-Ant",
+  "lastName": "Sultan",
+  "password": "123",
+  "passwordConfirm" : "123"
+}
+
+### LOGIN
+POST http://localhost:8080/api/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "aant_2",
+  "password": "123"
+}
+
+### HELLO
+GET http://localhost:8080/api/user/hello
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYW50XzIiLCJpYXQiOjE3NTYxNzc4NTMsImV4cCI6MTc1NjE3OTY1M30.m1u-z6YUjv7klKASzy2D1oUpyxNVQJu85RcDHtT9OSSuT-f8hYn9zXWwXFCyG5PwUgNeRvnAHlrinRTn49GN8A
