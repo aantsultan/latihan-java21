@@ -1,0 +1,5 @@
+### Customer Purchase
+GET http://localhost:8080/customer/purchase
+
+### Customer Purchase V2
+GET http://localhost:8080/customer/purchase/v2
