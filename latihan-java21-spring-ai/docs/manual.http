@@ -9,3 +9,13 @@ GET http://localhost:8080/nlp
 
 ### NLP : Product Review V2
 GET http://localhost:8080/nlp/v2
+
+### Image Recognition : Native Java
+GET http://localhost:8080/image-recognition
+
+### Image Recognition : DJL4J PyTorch
+GET http://localhost:8080/image-recognition/v2
+
+### Image Recognition : DJL4J PyTorch with Path Variable
+### book.png, coffee_mug.jpg, laptop.jpg, pill_bottle.png, smartphone.png
+GET http://localhost:8080/image-recognition/v3/smartphone.png
