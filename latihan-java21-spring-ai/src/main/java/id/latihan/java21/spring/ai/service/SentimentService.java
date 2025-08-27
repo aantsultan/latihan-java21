@@ -4,7 +4,8 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 
 import java.util.Map;
 
-public interface NlpService {
+public interface SentimentService {
+
     String loadData();
 
     String calculate(String filepath);

@@ -20,10 +20,11 @@ import java.util.Map;
 import java.util.Properties;
 
 @Service
-public class NlpServiceImpl implements NlpService {
+public class SentimentServiceImpl implements SentimentService {
+
     @Override
     public String loadData() {
-        return this.calculate("nlp/product_reviews.csv");
+        return this.calculate("sentiment/product_reviews.csv");
     }
 
     @Override
@@ -58,7 +59,7 @@ public class NlpServiceImpl implements NlpService {
             return """
                     === Review Sentiment Analysis ===
                     %s
-                                        
+                    
                     %s
                     """
                     .formatted(
@@ -131,6 +132,6 @@ public class NlpServiceImpl implements NlpService {
 
     @Override
     public String loadDataV2() {
-        return this.calculate("nlp/new_products_review.csv");
+        return this.calculate("sentiment/new_products_review.csv");
     }
 }

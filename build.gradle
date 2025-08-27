@@ -69,6 +69,9 @@ project('latihan-java21-spring-ai') {
         implementation "ai.djl:api:${aidjlVersion}"
         implementation "ai.djl.pytorch:pytorch-engine:${aidjlPytorchVersion}"
         implementation "ai.djl.pytorch:pytorch-model-zoo:${aidjlPytorchModelVersion}"
+
+        // Open API
+        implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
     }
     sourceSets {
         main {

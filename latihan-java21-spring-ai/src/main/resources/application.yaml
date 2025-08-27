@@ -1,3 +1,11 @@
 spring:
   application:
     name: Latihan Java 21 Spring AI
+
+springdoc:
+  packages-to-scan: id.latihan.java21.spring.ai.controller
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+  enable-spring-security: true

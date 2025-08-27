@@ -14,6 +14,7 @@ import java.util.List;
 @Slf4j
 @Service
 public class RegressionServiceImpl implements RegressionService {
+
     @Override
     public String loadData() {
         return this.calculatePredict("regression/customer_purchases.csv");
