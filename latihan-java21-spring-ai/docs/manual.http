@@ -1,5 +1,11 @@
-### Customer Purchase
-GET http://localhost:8080/customer/purchase
+### Regression : Customer Purchase
+GET http://localhost:8080/regression
 
-### Customer Purchase V2
-GET http://localhost:8080/customer/purchase/v2
+### Regression : Customer Purchase V2
+GET http://localhost:8080/regression/v2
+
+### NLP : Product Review
+GET http://localhost:8080/nlp
+
+### NLP : Product Review V2
+GET http://localhost:8080/nlp/v2

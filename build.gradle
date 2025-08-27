@@ -57,8 +57,12 @@ project('latihan-java21-spring-ai') {
     apply plugin: 'org.graalvm.buildtools.native'
     dependencies {
         implementation "org.springframework.boot:spring-boot-starter-web:${springWebVersion}"
-        implementation "org.deeplearning4j:deeplearning4j-core:1.0.0-M2" // Native Deep Learning
-        implementation "nz.ac.waikato.cms.weka:weka-stable:3.8.6" // Machine Learning
+        implementation "org.deeplearning4j:deeplearning4j-core:${deeplearning4jVersion}" // Native Deep Learning
+        implementation "nz.ac.waikato.cms.weka:weka-stable:${wekaVersion}" // Machine Learning
+        implementation "org.apache.opennlp:opennlp-tools:${opennlpVersion}" // NLP
+        implementation "edu.stanford.nlp:stanford-corenlp:4.5.10" // NLP
+        implementation "edu.stanford.nlp:stanford-corenlp:4.5.10:models" // NLP
+        implementation "com.opencsv:opencsv:5.7.1"
     }
 }
 
