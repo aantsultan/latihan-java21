@@ -19,3 +19,19 @@ GET http://localhost:8080/image-recognition/v2
 ### Image Recognition : DJL4J PyTorch with Path Variable
 ### book.png, coffee_mug.jpg, laptop.jpg, pill_bottle.png, smartphone.png
 GET http://localhost:8080/image-recognition/v3/smartphone.png
+
+### Chatbot
+POST http://localhost:8080/chatbot/chat
+Content-Type: application/json
+
+{
+  "query": "How do I reset my password"
+}
+
+### Chatbot V2 : with category
+POST http://localhost:8080/chatbot/chat/v2
+Content-Type: application/json
+
+{
+  "query": "How do I reset my password"
+}

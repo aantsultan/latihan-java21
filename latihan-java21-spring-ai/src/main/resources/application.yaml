@@ -9,3 +9,18 @@ springdoc:
   swagger-ui:
     enabled: true
   enable-spring-security: true
+
+gemini:
+  api:
+    key: ${GEMINI_API_KEY}
+    url: https://generativelanguage.googleapis.com
+    model : /v1beta/models/gemini-1.5-flash-latest:generateContent
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          reactive:
+            function:
+              client: DEBUG

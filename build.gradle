@@ -72,6 +72,9 @@ project('latihan-java21-spring-ai') {
 
         // Open API
         implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
+
+        implementation "org.springframework:spring-webflux:${springWebfluxVersion}"
+        implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}"
     }
     sourceSets {
         main {

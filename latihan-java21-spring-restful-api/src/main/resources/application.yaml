@@ -26,7 +26,7 @@ spring:
 
 jwt:
   token:
-    secret: DKriVLmNCUrvxKTvWY9S3CH+XWyjoh5pjxIexJCooo7rl5RnEZpK1gKWnrPPKNfeDKriVLmNCUrvxKTvWY9S3CH+XWyjoh5pjxIexJCooo7rl5RnEZpK1gKWnrPPKNfe
+    secret: ${JWT_TOKEN_SECRET}
     expire: 30m
 springdoc:
   packages-to-scan: id.latihan.java21.restfulapi.controller
