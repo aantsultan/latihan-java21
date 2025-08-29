@@ -16,6 +16,12 @@ gemini:
     url: https://generativelanguage.googleapis.com
     model : /v1beta/models/gemini-1.5-flash-latest:generateContent
 
+openai:
+  api:
+    key: ${OPENAI_API_KEY}
+#    url: https://api.openai.com/v1/chat/completions
+    url: https://api.openai.com/v1/responses
+
 logging:
   level:
     org:

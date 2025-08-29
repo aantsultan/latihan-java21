@@ -17,4 +17,10 @@ public class ApplicationProperties {
     @Value("${gemini.api.model}")
     private String geminiApiModel;
 
+    @Value("${openai.api.key}")
+    private String openaiApiKey;
+
+    @Value("${openai.api.url}")
+    private String openaiApiUrl;
+
 }

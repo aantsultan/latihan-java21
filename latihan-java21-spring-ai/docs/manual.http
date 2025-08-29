@@ -35,3 +35,12 @@ Content-Type: application/json
 {
   "query": "How do I reset my password"
 }
+
+### Implementing AI API with Spring
+POST http://localhost:8080/api/tickets/classify
+Content-Type: application/json
+
+{
+  "id": "12345",
+  "content": "I'm having trouble logging into my account. The password reset feature isn't working."
+}
