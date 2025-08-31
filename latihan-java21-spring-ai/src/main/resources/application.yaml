@@ -1,6 +1,12 @@
 spring:
   application:
     name: Latihan Java 21 Spring AI
+  ai:
+    openapi:
+      api-key: ${OPENAI_API_KEY}
+      model: gpt-3.5-turbo
+      chat:
+        api-key: ${OPENAI_API_KEY}
 
 springdoc:
   packages-to-scan: id.latihan.java21.spring.ai.controller
@@ -30,3 +36,4 @@ logging:
           reactive:
             function:
               client: DEBUG
+        ai: DEBUG
