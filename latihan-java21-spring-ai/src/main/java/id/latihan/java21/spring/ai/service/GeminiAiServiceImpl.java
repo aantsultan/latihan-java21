@@ -1,11 +1,18 @@
 package id.latihan.java21.spring.ai.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import id.latihan.java21.spring.ai.exception.ApplicationException;
 import id.latihan.java21.spring.ai.service.properties.ApplicationProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
@@ -20,6 +27,8 @@ public class GeminiAiServiceImpl implements GeminiAiService {
 
     private final ApplicationProperties properties;
     private final WebClient geminiWebClient;
+    private final RestTemplate restTemplate;
+    private final ObjectMapper objectMapper;
 
     private static final String KEY_CATEGORY = "category";
     private static final String KEY_RESPONSE = "response";
@@ -182,6 +191,68 @@ public class GeminiAiServiceImpl implements GeminiAiService {
             errorResult.put(KEY_CATEGORY, "error");
             errorResult.put(KEY_RESPONSE, String.format("I'm sorry, there was an error processing your request: %s", e.getMessage()));
             return errorResult;
+        }
+    }
+
+    /***
+     * Contoh dari https://aistudio.google.com 2025-09-01 07:06 WIB
+     * curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent" \
+     *   -H 'Content-Type: application/json' \
+     *   -H 'X-goog-api-key: GEMINI_API_KEY' \
+     *   -X POST \
+     *   -d '{
+     *     "contents": [
+     *       {
+     *         "parts": [
+     *           {
+     *             "text": "Explain how AI works in a few words"
+     *           }
+     *         ]
+     *       }
+     *     ]
+     *   }'
+     * @param issueType
+     * @return
+     */
+    @Override
+    public String generateTemplate(String issueType) {
+        try {
+            // Build the request body using nested Maps
+            Map<String, Object> textPart = new HashMap<>();
+            textPart.put("text", """
+                    Create a professional customer support response template for the following issue type: '%s'.
+                    Include placeholders like [CUSTOMER_NAME], [TICKET_NUMBER], [SPECIFIC_DETAILS] where appropriate.
+                    Make it friendly, professional, and helpful. Keep it concise but comprehensive.
+                    """.formatted(issueType));
+
+
+
+            Map<String, Object> part = new HashMap<>();
+            part.put(KEY_PARTS, List.of(textPart));
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put(KEY_CONTENTS, List.of(part));
+            // Create headers
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("X-goog-api-key", properties.getGeminiApiKey());
+            // Create the request entity
+            HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+            // Make the API call
+            String urlWithKey = String.format("%s%s", properties.getGeminiApiUrl(), properties.getGeminiApiModel());
+            String response = restTemplate.postForObject(urlWithKey, requestEntity, String.class);
+            // Parse the response
+            JsonNode jsonResponse = objectMapper.readTree(response);
+            // Extract the generated text from the response
+            return jsonResponse
+                    .path(KEY_CANDIDATES)
+                    .get(0)
+                    .path(KEY_CONTENT)
+                    .path(KEY_PARTS)
+                    .get(0)
+                    .path(KEY_TEXT)
+                    .asText();
+        } catch (JsonProcessingException e) {
+            throw new ApplicationException(e.getMessage(), e);
         }
     }
 }

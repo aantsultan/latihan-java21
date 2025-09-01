@@ -6,5 +6,6 @@ public interface GeminiAiService {
 
     String generateResponse(String query);
     Map<String, String> generateResponseV2(String query);
+    String generateTemplate(String issueType);
 
 }
