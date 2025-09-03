@@ -26,4 +26,11 @@ public class SentimentController {
         return service.loadDataV2();
     }
 
+    @GetMapping(value = "/sentiment/store",
+            produces = MediaType.TEXT_PLAIN_VALUE)
+    public String loadDataStore(){
+        return service.loadDataStore();
+    }
+
+
 }

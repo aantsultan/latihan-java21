@@ -4,6 +4,7 @@ import id.latihan.java21.spring.ai.model.ChatRequest;
 import id.latihan.java21.spring.ai.model.ChatResponse;
 import id.latihan.java21.spring.ai.model.ChatResponseV2;
 import id.latihan.java21.spring.ai.service.GeminiAiService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Chatbot", description = "The Chatbot API is used to create conversation between bot and user by using Gemini.")
 public class ChatbotController {
 
     private final GeminiAiService geminiAiService;
