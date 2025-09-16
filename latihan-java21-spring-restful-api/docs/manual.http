@@ -25,3 +25,7 @@ Content-Type: application/json
 ### HELLO
 GET http://localhost:8080/api/user/hello
 Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhYW50XzIiLCJpYXQiOjE3NTYxNzc4NTMsImV4cCI6MTc1NjE3OTY1M30.m1u-z6YUjv7klKASzy2D1oUpyxNVQJu85RcDHtT9OSSuT-f8hYn9zXWwXFCyG5PwUgNeRvnAHlrinRTn49GN8A
+
+### VECTOR
+GET http://localhost:8080/api/vector
+Authorization: Bearer

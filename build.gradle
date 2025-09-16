@@ -51,6 +51,23 @@ project('latihan-java21-spring-restful-api') {
 
         implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
     }
+    tasks.withType(JavaCompile).configureEach {
+        options.compilerArgs += [
+            '--add-modules', 'jdk.incubator.vector'
+        ]
+    }
+
+    tasks.withType(Test).configureEach {
+        jvmArgs += [
+                '--add-modules', 'jdk.incubator.vector'
+        ]
+    }
+
+    tasks.withType(JavaExec).configureEach {
+        jvmArgs += [
+                '--add-modules', 'jdk.incubator.vector'
+        ]
+    }
 }
 
 project('latihan-java21-spring-ai') {

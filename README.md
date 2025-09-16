@@ -13,3 +13,9 @@ Open API Documentation can access at
 ```
    <ip>:<port>/swagger-ui/index.html
 ```
+
+### Build Project
+
+``` 
+    ./gradlew latihan-java21-spring-restful-api:build -x test
+```
